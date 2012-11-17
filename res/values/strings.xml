@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Trends Online</string>
-    <string name="hello_world">Hello world, you are awesome!</string>
+    <string name="hello_world">Hello world, you are awesome! made by nils</string>
     <string name="menu_settings">Settings</string>
 
 </resources>
