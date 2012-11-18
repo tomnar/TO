@@ -1,6 +1,7 @@
 package trendsonline.cast.li;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -17,10 +18,14 @@ import com.loopj.android.http.*;
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 public class MainActivity extends ListActivity { 
@@ -41,6 +46,19 @@ public class MainActivity extends ListActivity {
 				httpGetFinished(response);
 		    }
 		});
+		
+//		AsyncHttpClient client2 = new AsyncHttpClient();
+//		String[] allowedContentTypes = new String[] { "image/png", "image/jpeg" };
+//		client2.get("http://cdn.media.xda-developers.com/images/XDA2013/thread/post/gplus_orange.png", new BinaryHttpResponseHandler(allowedContentTypes) {
+//		    @Override
+//		    public void onSuccess(byte[] fileData) {
+//		    	ImageView v = (ImageView) findViewById(R.id.img);
+//		    	
+//		    	v.setImageBitmap(BitmapFactory.decodeByteArray(fileData , 0, fileData.length));
+//		    }
+//		});
+		
+		
 	}
 
 	@Override
@@ -91,6 +109,7 @@ public class MainActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Log.w("app", "list item clicked");
+		String content = articles.get(position).getContent();
 		
 		Intent intent = new Intent(this, ArticleActivity.class);
 	    intent.putExtra(ARTICLE_MESSAGE, articles.get(position).getContent());
