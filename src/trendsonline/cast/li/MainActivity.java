@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 					String link = n.getElementsByTagName("link").item(0).getTextContent();
 					String date = n.getElementsByTagName("pubDate").item(0).getTextContent();
 					String description = n.getElementsByTagName("description").item(0).getTextContent();
-					String content = n.getElementsByTagName("content").item(0).getTextContent();
+					String content = n.getElementsByTagName("content:encoded").item(0).getTextContent();
 					articles.add(new Article(title, link, date, description, content));
 				}
 			}
