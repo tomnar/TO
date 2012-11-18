@@ -25,6 +25,7 @@ import android.widget.ListView;
 
 public class MainActivity extends ListActivity { 
 
+	public final static String ARTICLE_MESSAGE = "trendsonline.cast.li.article_message";
 	ArrayList<Article> articles;
 
 	@Override
@@ -76,6 +77,7 @@ public class MainActivity extends ListActivity {
 
 			Log.w("app", "number of articles loaded: " + String.valueOf(items.getLength()));
 
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
 
 			setListAdapter(adapter);
@@ -90,9 +92,9 @@ public class MainActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Log.w("app", "list item clicked");
 		
-		//	   Uri uri = Uri.parse(links.get(position));
-		//	   Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-		//	   startActivity(intent);  
+		Intent intent = new Intent(this, ArticleActivity.class);
+	    intent.putExtra(ARTICLE_MESSAGE, articles.get(position).getContent());
+	    startActivity(intent);
 	}
 
 }
