@@ -5,13 +5,14 @@ import java.net.URL;
 
 import trendsonline.cast.li.R;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,7 +38,9 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
 		textView.setText(values[position]);
-
+		Animation animationFadeIn = AnimationUtils.loadAnimation(context, R.anim.fadein);
+	    textView.startAnimation(animationFadeIn);
+		
 		// Change icon based on name
 		String s = values[position];
 
@@ -63,9 +66,11 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 							@Override
 							public void onSuccess(byte[] fileData) {
 								ImageView v = (ImageView) rowView.findViewById(R.id.logo);
-
+								
 								v.setImageBitmap(BitmapFactory.decodeByteArray(
 										fileData, 0, fileData.length));
+								Animation animationFadeIn = AnimationUtils.loadAnimation(context, R.anim.fadein);
+							    v.startAnimation(animationFadeIn);
 							}
 						});
 				
@@ -88,6 +93,8 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 
 								v.setImageBitmap(BitmapFactory.decodeByteArray(
 										fileData, 0, fileData.length));
+								Animation animationFadeIn = AnimationUtils.loadAnimation(context, R.anim.fadein);
+							    v.startAnimation(animationFadeIn);
 							}
 						});
 			} else if (s.equals("Blackberry")) {
@@ -107,6 +114,8 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 
 								v.setImageBitmap(BitmapFactory.decodeByteArray(
 										fileData, 0, fileData.length));
+								Animation animationFadeIn = AnimationUtils.loadAnimation(context, R.anim.fadein);
+							    v.startAnimation(animationFadeIn);
 							}
 						});
 			} else {
@@ -126,6 +135,8 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 
 								v.setImageBitmap(BitmapFactory.decodeByteArray(
 										fileData, 0, fileData.length));
+								Animation animationFadeIn = AnimationUtils.loadAnimation(context, R.anim.fadein);
+							    v.startAnimation(animationFadeIn);
 							}
 						});
 			}
