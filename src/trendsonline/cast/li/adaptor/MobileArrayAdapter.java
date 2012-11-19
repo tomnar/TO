@@ -54,7 +54,7 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 
 			
 			
-			if (s.equals("WindowsMobile, this is a trial to se what happens if you get a long string")) {
+			if (s.equals("Connection Error")) {
 				AsyncHttpClient client2 = new AsyncHttpClient();
 				String[] allowedContentTypes = new String[] { "image/png", "image/jpeg" };
 				client2.get(
@@ -71,7 +71,7 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 				
 				//imageView.setImageResource(R.drawable.windowsmobile_logo);
 				Log.w("lala", "Fajl");
-			} else if (s.equals("iOS")) {
+			} else if (s.equals("Try to Reconnect")) {
 				// imageViewz.setImageDrawable(grabImageFromUrl(url.toString()));
 				// Bitmap bmp =
 				// BitmapFactory.decodeStream(url.openConnection().getInputStream());
