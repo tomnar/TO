@@ -12,12 +12,12 @@
     
     <application
         android:allowBackup="true"
-        android:icon="@drawable/tro_top_hades4"
         android:label="@string/app_name"
+        android:icon="@drawable/tro_top_hades3"
         android:theme="@style/AppTheme" >
         <activity
             android:name="trendsonline.cast.li.ListMobileActivity"
-            android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

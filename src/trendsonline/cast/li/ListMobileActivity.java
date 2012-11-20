@@ -24,15 +24,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 
 public class ListMobileActivity extends ListActivity {
 	
 	public final static String ARTICLE_MESSAGE = "trendsonline.cast.li.article_message";
+	public final static String ARTICLE_TITLE = "trendsonline.cast.li.article_title";
 	ArrayList<Article> articles;
 	
-	static final String[] MOBILE_OS = new String[] { "Android", "iOS",
-			"WindowsMobile, this is a trial to se what happens if you get a long string", "Blackberry"};
-
 	String[] articlez = new String[] {"Connection Error", "Try to Reconnect."};
 	
 	@Override
@@ -52,7 +51,7 @@ public class ListMobileActivity extends ListActivity {
 				
 		    }
 		});
-		
+		setTitle("Nyheder");
 		
 	}
 	
@@ -83,13 +82,8 @@ public class ListMobileActivity extends ListActivity {
 		    articlez = new String[titles.size()];
 		    articlez = titles.toArray(articlez);
 		    setListAdapter(new MobileArrayAdapter(this, articlez));
-			
+		    
 			Log.w("app", "number of articles loaded: " + String.valueOf(items.getLength()));
-
-//			@SuppressWarnings({ "rawtypes", "unchecked" })
-//			ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, titles);
-//
-//			setListAdapter(adapter);
 
 
 		} catch (Exception e) {
@@ -100,10 +94,10 @@ public class ListMobileActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Log.w("app", "list item clicked");
-		String content = articles.get(position).getContent();
 		
 		Intent intent = new Intent(this, ArticleActivity.class);
 	    intent.putExtra(ARTICLE_MESSAGE, articles.get(position).getContent());
+	    intent.putExtra(ARTICLE_TITLE, articles.get(position).getTitle());
 	    startActivity(intent);
 	}
 

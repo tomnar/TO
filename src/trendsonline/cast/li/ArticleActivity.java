@@ -13,12 +13,12 @@ public class ArticleActivity extends Activity{
 		setContentView(R.layout.activity_article);
 		
 		Intent intent = getIntent();
-		String message = intent.getStringExtra(MainActivity.ARTICLE_MESSAGE);
-//		TextView v = (TextView) findViewById(R.id.article_text);
-//		v.setText(Html.fromHtml(message));
+		String message = intent.getStringExtra(ListMobileActivity.ARTICLE_MESSAGE);
+		String title = intent.getStringExtra(ListMobileActivity.ARTICLE_TITLE);
 		WebView v = (WebView) findViewById(R.id.article_text);
 		v.getSettings().setJavaScriptEnabled(true);
-		v.loadData(message, "text/html; charset=UTF-8", null);;
+		v.loadData(message, "text/html; charset=UTF-8", null);
+		setTitle(title);
 	}
 
 
