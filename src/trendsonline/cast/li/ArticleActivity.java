@@ -12,12 +12,15 @@ public class ArticleActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_article);
 		
+		//fetches the intent from the ListMobileActivity. 
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(ListMobileActivity.ARTICLE_MESSAGE);
 		String title = intent.getStringExtra(ListMobileActivity.ARTICLE_TITLE);
+		//sets up a WebView with javascript enabled.
 		WebView v = (WebView) findViewById(R.id.article_text);
 		v.getSettings().setJavaScriptEnabled(true);
 		v.loadData(message, "text/html; charset=UTF-8", null);
+		//sets the title bar to the title of the article.
 		setTitle(title);
 	}
 

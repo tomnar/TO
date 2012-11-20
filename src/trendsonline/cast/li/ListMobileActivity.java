@@ -37,13 +37,12 @@ public class ListMobileActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		//setListAdapter(new ArrayAdapter<String>(this, R.layout.list_mobile,
-		//		R.id.label, MOBILE_OS));
 		
+		//creates a list for the articles
 		articles = new ArrayList<Article>();
 		Log.w("apP", "received");
 		AsyncHttpClient client = new AsyncHttpClient();
+		//fetches the rss feed
 		client.get("https://dl.dropbox.com/u/2440776/trendsonline.rss", new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
@@ -61,7 +60,8 @@ public class ListMobileActivity extends ListActivity {
 		try {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder(); 
 			Document doc = builder.parse(new InputSource(new ByteArrayInputStream(res.getBytes("utf-8")))); 
-
+			
+			//transfers the content of the rss to the articles array.
 			NodeList items = doc.getElementsByTagName("item");
 			for (int i = 0; i < items.getLength(); i++){
 				if (items.item(i).getNodeType() == Node.ELEMENT_NODE) {
@@ -74,11 +74,13 @@ public class ListMobileActivity extends ListActivity {
 					articles.add(new Article(title, link, date, description, content));
 				}
 			}
-
+			
+			//runs through the article array to get all the titles.
 			ArrayList<String> titles = new ArrayList<String>();
 			for (Article a : articles) {
 				titles.add(a.getTitle());
 			}
+			//transfers the titles to a String[]
 		    articlez = new String[titles.size()];
 		    articlez = titles.toArray(articlez);
 		    setListAdapter(new MobileArrayAdapter(this, articlez));
@@ -90,12 +92,14 @@ public class ListMobileActivity extends ListActivity {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//Sets up the Clicklistener on every item on the list.
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Log.w("app", "list item clicked");
 		
 		Intent intent = new Intent(this, ArticleActivity.class);
+		//pushes content to the intent
 	    intent.putExtra(ARTICLE_MESSAGE, articles.get(position).getContent());
 	    intent.putExtra(ARTICLE_TITLE, articles.get(position).getTitle());
 	    startActivity(intent);

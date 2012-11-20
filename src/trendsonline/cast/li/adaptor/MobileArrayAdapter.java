@@ -21,15 +21,19 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.BinaryHttpResponseHandler;
 
 public class MobileArrayAdapter extends ArrayAdapter<String> {
+	//Setting up global private variables
 	private final Context context;
 	private final String[] values;
-
+	
+	
 	public MobileArrayAdapter(Context context, String[] values) {
 		super(context, R.layout.list_mobile, values);
 		this.context = context;
 		this.values = values;
 	}
 
+	
+	// Initiases the view, and sets the right content at the list view.
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context
@@ -47,16 +51,12 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 		System.out.println(s);
 
 		try {
+			//Setting up url to stock image
 			URL url;
 			url = new URL(
 					"https://twimg0-a.akamaihd.net/profile_images/1332196839/heart_100px_normal.jpg");
-			// Bitmap bmp =
-			// BitmapFactory.decodeStream((InputStream)url.getContent());
-			// imageView.setImageBitmap(bmp);
-			// imageView.setImageResource(R.drawable.android_logo);
-
 			
-			
+			//looking if the String[] is not initialized and gives the user an error.
 			if (s.equals("Connection Error")) {
 				AsyncHttpClient client2 = new AsyncHttpClient();
 				String[] allowedContentTypes = new String[] { "image/png", "image/jpeg" };
@@ -74,35 +74,8 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 							}
 						});
 				
-				//imageView.setImageResource(R.drawable.windowsmobile_logo);
 				Log.w("lala", "Fajl");
 			} else if (s.equals("Try to Reconnect")) {
-				// imageViewz.setImageDrawable(grabImageFromUrl(url.toString()));
-				// Bitmap bmp =
-				// BitmapFactory.decodeStream(url.openConnection().getInputStream());
-				// imageView.setImageBitmap(bmp);
-				//imageView.setImageResource(R.drawable.ios_logo);
-				AsyncHttpClient client2 = new AsyncHttpClient();
-				String[] allowedContentTypes = new String[] { "image/png", "image/jpeg" };
-				client2.get(
-						url.toString(),
-						new BinaryHttpResponseHandler(allowedContentTypes) {
-							@Override
-							public void onSuccess(byte[] fileData) {
-								ImageView v = (ImageView) rowView.findViewById(R.id.logo);
-
-								v.setImageBitmap(BitmapFactory.decodeByteArray(
-										fileData, 0, fileData.length));
-								Animation animationFadeIn = AnimationUtils.loadAnimation(context, R.anim.fadein);
-							    v.startAnimation(animationFadeIn);
-							}
-						});
-			} else if (s.equals("Blackberry")) {
-				// imageViewz.setImageDrawable(grabImageFromUrl(url.toString()));
-				// Bitmap bmp =
-				// BitmapFactory.decodeStream(url.openConnection().getInputStream());
-				// imageView.setImageBitmap(bmp);
-				//imageView.setImageResource(R.drawable.blackberry_logo);
 				AsyncHttpClient client2 = new AsyncHttpClient();
 				String[] allowedContentTypes = new String[] { "image/png", "image/jpeg" };
 				client2.get(
@@ -119,11 +92,7 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 							}
 						});
 			} else {
-				// imageViewz.setImageDrawable(grabImageFromUrl(url.toString()));
-				// Bitmap bmp =
-				// BitmapFactory.decodeStream(url.openConnection().getInputStream());
-				// imageView.setImageBitmap(bmp);
-				//imageView.setImageResource(R.drawable.android_logo);
+				
 				AsyncHttpClient client2 = new AsyncHttpClient();
 				String[] allowedContentTypes = new String[] { "image/png", "image/jpeg" };
 				client2.get(
@@ -147,12 +116,6 @@ public class MobileArrayAdapter extends ArrayAdapter<String> {
 		}
 
 		return rowView;
-	}
-
-	private Drawable grabImageFromUrl(String url) throws Exception {
-		Log.w("lala", "Fajlzzzzzzzzz");
-		return Drawable.createFromStream(
-				(InputStream) new URL(url).getContent(), "src");
 	}
 
 }
