@@ -3,7 +3,6 @@ package trendsonline.cast.li;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.webkit.WebView;
 
 public class ArticleActivity extends Activity{
@@ -22,6 +21,12 @@ public class ArticleActivity extends Activity{
 		v.loadData(message, "text/html; charset=UTF-8", null);
 		//sets the title bar to the title of the article.
 		setTitle(title);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 	}
 
 
