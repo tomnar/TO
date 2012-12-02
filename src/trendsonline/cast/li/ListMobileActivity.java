@@ -29,23 +29,28 @@ public class ListMobileActivity extends ListActivity {
 	public final static String ARTICLE_MESSAGE = "trendsonline.cast.li.article_message";
 	public final static String ARTICLE_TITLE = "trendsonline.cast.li.article_title";
 	ArrayList<Article> articles;
-	
 	String[] articlez = new String[] {"Connection Error", "Try to Reconnect."};
+	
+	RSSFetcher rssFetcher;
+	
+	//Method for setting up the app: lightweight factory
+	private void setup(){
+		rssFetcher = new TrendsOnlineRSSFetcher();
+	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setup();
 		
 		//creates a list for the articles
 		articles = new ArrayList<Article>();
 		Log.w("apP", "received");
-		AsyncHttpClient client = new AsyncHttpClient();
 		//fetches the rss feed
-		client.get("https://dl.dropbox.com/u/2440776/trendsonline.rss", new AsyncHttpResponseHandler() {
+		rssFetcher.get(new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
 				httpGetFinished(response);
-				
 		    }
 		});
 		setTitle("Nyheder");
